@@ -1,0 +1,93 @@
+<div class="wrapper">
+  <div class="side-box box">
+    <form #monsterName>
+      <label for="monsterTitle">enter a monster name </label>
+
+      <input #monsterTitle>
+      <label for="dice">how many monsters?</label>
+      <input placeholder="how many mobs you need?" [(ngModel)]="monsterNumber" name="number">
+
+
+      <button (click)="checkMonster(monsterTitle.value, 0)">Populate Monsters</button>
+    </form>
+    <div class="monster-detail">
+
+    </div>
+    <button (click)="listMonsters()">listMonsters</button>
+    <button (click)="listSelected()">selected</button>
+  </div>
+  <div class="main-box box">
+
+    <div class="monster-card box" *ngFor="let monster of monsters let i = index"  id ="box{{i+1}}">
+      <div class="monster-picture" (click)="selectMonsterBox($event)">
+        <a class="skull-icon" (click)="closeMonsterBox($event)"><img class="skull-icon" src="assets/skull.png"></a>
+      </div>
+      <div class="monster-title" #monsterCard{{i}} >
+        <h4>{{monster.name}}</h4>
+      </div>
+      <div class="monster-stats">
+        <p>HP:
+          <input type=text  class= "monster-hp"placeholder="{{monster.hit_points}}">/{{monster.hit_points}}</p>
+        <p>AC: {{monster.armor_class}}</p>
+        <p>STR: {{monster.strength}}</p>
+        <p>DEX: {{monster.dexterity}}</p>
+        <p>INT: {{monster.intelligence}}</p>
+        <p>CON: {{monster.constitution}}</p>
+        <p>WIS: {{monster.wisdom}}</p>
+      </div>
+    </div>
+    <div class="monster-card" *ngFor="let monster of addedMonsters let i=index ">
+      <div class="monster-picture">
+        <p>picture</p>
+      </div>
+      <div class="monster-title">
+        <p>{{monster.name}} {{i+1}}</p>
+      </div>
+      <div class="monster-stats">
+        HP:
+        <input type=text placeholder="{{monster.hit_points}}" *ngModel="this.addedMonsters[i].hit_points">
+
+        <p>AC: {{monster.armor_class}}</p>
+        <p>STR: {{monster.strength}}</p>
+        <p>DEX: {{monster.dexterity}}</p>
+        <p>INT: {{monster.inteligence}}</p>
+        <p>CON: {{monster.constitution}}</p>
+        <p>WIS: {{monster.wisdom}}</p>
+      </div>
+      <form>
+        <input type="text" placeholder="Enter Name" #monsterName>
+        <button type="button" (click)="checkMonster(monsterName.value, 1)">Get em</button>
+      </form>
+    </div>
+   
+</div>
+<div class="bottom-box box">
+ 
+    <div class="add-monster-button">
+      <button (click)="addMonsterCard()">
+        Add Monster
+      </button>
+    </div>
+  </div>
+  <div class="selected-details box" *ngIf="this.selected || this.selected === 0; else noMonster">
+      <h4>{{monsters[selected].name}}</h4>
+      <div *ngFor="let action of monsters[selected].actions | keyvalue">
+        <p>Attacks: {{action.value.desc}}</p>
+      </div>
+      <div *ngFor="let action of monsters[selected].special_abilities | keyvalue">
+          <p>Special Abilities: <strong>{{action.value.name}}</strong> {{action.value.desc}}</p>
+        </div>
+        <!-- all other stats -->
+    <!-- <div class="selected-stats" *ngFor="let stat of this.monsters[selected] | keyvalue">
+       <p>{{stat.key}}: {{stat.value}}</p> 
+     
+    </div> -->
+  
+    </div>
+    <ng-template #noMonster >
+      <div class="box">
+      this is where your monster will live
+    </div>
+  </ng-template>
+ 
+</div>

@@ -1,0 +1,326 @@
+
+@keyframes bannerReveal{
+  0%{
+      transform: rotate(xx);
+      opacity: 0.0;
+      }
+  1%{
+      transform: rotate(xx);
+      opacity: 0.05;
+      }
+  42%{
+      transform: rotate(xx);
+      opacity: 1;
+      }
+    
+}
+@keyframes textReveal{
+  0%{
+      transform: rotate(xx);
+      opacity: 0.01;
+      }
+  47%{
+      transform: rotate(xx);
+      opacity: .5;
+      }
+  100%{
+      transform: rotate(xx);
+      opacity: 1;
+      }
+}
+@keyframes slideUp{
+  0%{
+    opacity: 0.0;
+      }
+  6%{
+      transform: translateY(0%);
+      }
+      50%{
+       
+      }
+  100%{
+      transform: translateY(-50%);
+      opacity: 1
+
+      }
+}
+
+.elementToAnimate{
+  animation: tbannerReveal1.5s normal forwards 0s linear;
+}
+
+.elementToAnimate{
+  animation: tbannerReveal6s infinite 0s linear;
+}
+.banner-image{
+  animation: tbannerReveal1.5s 0s linear;
+  background-image: url(https://geekandsundry.com/wp-content/uploads/2017/09/ToA_Icons_Minis_HeaderImage.jpg);
+  height:600px;
+  background-repeat: no-repeat;
+  background-size:cover;
+  box-shadow: 0 0 1.5em #867453;
+
+}
+.top-box{
+  display: grid;
+  grid-gap: 1em;
+
+}
+
+.day-buttons-box{
+max-width:100%;
+
+}
+
+
+.box{
+  box-shadow: 0 0 1.5em #867453;
+}
+.box-shade{
+height: 22px;
+background-color: #f4c756;
+
+
+
+
+background-image: linear-gradient(to bottom right, #e5d099, #f9f3d8)
+
+}
+.button{
+  background-color:#b0a383;
+  border:1px solid #922610;
+  box-shadow: 0 0 5em #867453;
+  max-width:75%;
+  border-radius:10px;
+  font-family: 'Libre Baskerville', 'Lora', 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
+  color: #922610;
+  font-size: 12px;
+  line-height: 1.2em;
+  height:auto;
+  letter-spacing: 1px;
+  font-variant: small-caps;
+  font-weight: bold;
+  cursor: pointer;
+  
+}
+@media screen and (min-width:751px){
+  .event-box{
+    opacity:1;
+    grid-template-columns:repeat(3, 1fr)
+
+  }
+  .top-box{
+    grid-template-columns:4fr 1fr;
+  }
+  .wrapper{
+    opacity: 0;
+    grid-template-columns: 1fr 4fr;
+  
+    animation: slideUp 1.5s normal forwards 1s;
+
+    
+  }
+}
+@media screen and (max-width:750px){
+  .wrapper{
+    width:100%;
+    opacity:0;
+    display:grid;
+    height:auto;
+    grid-template-columns: 1fr;
+   
+   
+  }
+  .banner-text{
+    font-size:30px
+  }
+  .top-box{
+    grid-template-columns:1fr;
+  }
+
+  .box{
+    display:grid
+  }
+  .day-buttons-box{
+    padding:20px;
+    align-items: center;
+    justify-content: center;
+  }
+ .event-box, .main-box, .top-box, .content-box{
+   display:grid
+  }
+  .event-box{
+    opacity:1;
+    animation: bannerReveal 1.5s  0s linear;
+    grid-template-columns:repeat(1, 1fr)
+  }
+
+}
+
+.wrapper {
+ 
+  
+  font-size: 13.5px;
+  line-height: 1.2em;
+  box-sizing: border-box;
+  width: 100%;
+  font-family: 'Noto Sans', 'Myriad Pro', Calibri, Helvetica,
+    Arial, sans-serif;
+  min-height:750px;
+  height:auto;
+  display:grid;
+  grid-gap: 1em;
+ 
+  grid-auto-rows: minmax(50px, auto);
+  text-align: center;
+  background: #f9f3d8;
+  box-shadow: 0 0 1.5em #867453;
+  
+}
+
+.red-border{
+ 
+  border-right: solid 165px #FDF1DC;
+  border-bottom: solid 1px #922610;
+  
+  box-shadow: 0 0 1.5em #867453;
+
+}
+.side-box{
+ 
+  width:auto;
+  height:100%
+  
+}
+
+.black-text{
+  color:black;
+  font-size: 13.5px;
+  line-height: 1.2em;
+  display: inline;
+  margin: 0;
+  font-style: italic
+}
+.die-roll{
+  animation: tbannerReveal1.5s  0s linear;
+}
+.main-box{
+  animation: tbannerReveal1.5s  0s linear;
+  text-align: left;
+ 
+  display: inline-block;
+  vertical-align: top;
+  width: auto;
+  min-width:100%;
+  
+  display:grid;
+ 
+  grid-template-columns: 1fr;
+  grid-auto-rows: minmax(50px, auto);
+
+}
+.supplies{
+text-align:start
+}
+.weather-box{
+  animation: tbannerReveal2s 0s linear;
+}
+.content-box{
+
+  display: grid;
+   grid-template-rows:  auto;
+
+
+}
+.event-box{
+  animation: bannerReaveal 1.5s 0s linear;
+  padding-top:2%;
+  display:grid;
+  grid-gap: 1em;
+  grid-auto-rows:minmax(25%, auto)
+ }
+
+.event-card{
+  animation: bannerReveal 1.5s 0s linear;
+   padding:20px;
+   box-shadow: 0 0 1.5em #867453;
+   height:auto;
+
+ 
+}
+.event-text{
+padding: 5px;
+}
+.box{
+  animation: bannerReveal 2s 0s linear;
+  padding:8px
+}
+.event-title{
+  border-bottom:red 1px solid;
+}
+.red-text-lg{
+  font-family: 'Libre Baskerville', 'Lora', 'Calisto MT', 'Bookman Old Style', Bookman, 'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter', Georgia, serif;
+  color: #922610;
+  font-size: 23px;
+  line-height: 1.2em;
+
+  letter-spacing: 1px;
+  font-variant: small-caps;
+  font-weight: bold;
+}
+
+.banner-text{
+  color:#b0a383;
+  font-size:4em;
+}
+.encounter{
+  top: 0 !important;
+  overflow-y: scroll;
+}
+.result-grid-tile{
+  padding-top:  0px !important;
+  left: 0 !important;
+  top: calc(90%) !important;
+  height: 75% !important;
+  margin-top:0 !important;
+  width: calc(((50% - 0.75px) * 1) + 0px)!important;
+  overflow-y: scroll;
+}
+.mat-card{
+  
+  height:300px;
+  width:inherit;
+  background-color:powderblue;
+  overflow-y: scroll
+ 
+}
+.container{
+  display:grid;
+
+}
+
+ul {
+  display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:whitesmoke;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color: #111;
+  }

@@ -1,0 +1,223 @@
+
+<div class="banner-image">
+
+</div>
+<div class="wrapper">
+  <div class="side-box">
+    <div class="party-info-box box red-text-lg">
+      <div class="red-text-lg">
+        Roll Some Die
+        <select #dice>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+     
+        </select>
+        <select #faces>
+            <option value="4">d4</option>
+            <option value="6">d6</option>
+            <option value="8">d8</option>
+            <option value="10">d10</option>
+            <option value="12">d12</option>
+            <option value="20">d20</option>
+          </select>
+          <button (click)="rollDice(faces.value, dice.value)">Roll</button>
+          <h4 class="red-text-lg die-roll">{{lastRoll}}</h4>
+         </div>
+
+
+
+      <div class="red-border"></div>
+    </div>
+    <div class="dm-controls-box red-text-lg box">
+      <div class="box-shade"></div>
+
+      <div>
+        <label>Daily Food</label>
+        <input [(ngModel)]="this.dailyFood" placeholder="change food consumption rate">
+        <label>daily Water:</label>
+        <input [(ngModel)]="this.dailyWater" placeholder="change water consuption rate">
+
+        <label>Food: </label>
+        <input placeholder="change food supply" [(ngModel)]="partyFood">
+        <br>
+        <label>Water: </label>
+        <input placeholder="change food" [(ngModel)]="partyWater">
+      </div>
+    </div>
+
+  </div>
+  <div class="content-box">
+    <div class="top-box ">
+      <div class="weather-box box red-text-lg">
+
+
+        <div *ngIf="dayTracker === 0 else day2">
+          <h1>Welcome to the jungle...</h1>
+
+
+          <p class="black-text">Select a location to see what happens today</p>
+        </div>
+        <div class="supplies black-text">
+          <p>Food: {{partyFood}}</p>
+
+          <p>Water: {{partyWater}}</p>
+
+          <p>Space: {{partySpace}}</p>
+          <div class="red-border"></div>
+        </div>
+        <ng-template #day2>
+          <p>The party is on day {{dayTracker}}</p>
+        </ng-template>
+
+
+        <ng-container *ngFor="let weather of this.weather; let i = index" class="black-text">
+          <div class="black-text">
+            <h2 class="red-text-lg">{{weatherLabelArr[i]}} Weather: {{this.weather.title}}</h2>
+            <p>{{this.weather.text}}</p>
+          </div>
+        </ng-container>
+      </div>
+      <div class="day-buttons-box box red-text-lg">
+        <h3>Select Location</h3>
+        <div class="button-box">
+          <button class="button" (click)="getBeach();">Beach</button>
+          <button class="button" (click)="getNoUndead();">NoUndead</button>
+          <button class="button" (click)="getUndead();">Undead Jungle
+          </button>
+          <button class="button" value="greaterUndead()" (click)="getGreaterUndead();">Greater Undead Jungle
+          </button>
+          <button class="button" value="river" (click)="getRiver()">River</button>
+          <button class="button" value="river" (click)="getSwamp()">Swamp</button>
+          <button class="button" (click)="this.undeadService.getCurrentMonster('Guard')">test button</button>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="main-box">
+      <div *ngIf="this.rollResults.length===3 else nothing" style="align-content: center">
+        <div class="event-box results" style="grid-template-columns: 1fr; text-align:center">
+          <div class="event-card">
+            <div class="event-title red-text-lg">
+              <h3>Nothing happened today</h3>
+              <div class="red-border"></div>
+            </div>
+            <div class="event.text black-text">
+              <p>lucky you.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #nothing>
+        <div class="event-box" style="align-content:center">
+          <ng-container *ngFor="let result of this.rollResults">
+            <ng-container *ngIf="result.title red-text-lg">
+              <div class="event-card">
+                <div class="event-title red-text-lg">
+                  <h3>{{result.id}}: {{result.title}}</h3>
+                  <div class="red-border"></div>
+                </div>
+                <div class="event.text black-text">
+                  <p>{{result.text}}</p>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+
+      </ng-template>
+    </div>
+  </div>
+</div>
+<!-- <mat-grid-list cols="4" rowHeight="3:1" >
+  <div *ngIf="this.weather; else noWeather">
+
+    <mat-grid-tile [colspan]="4" [rowspan]="1">
+      <ng-container *ngFor="let weather of this.weather">
+
+        <h2>Today's Weather: {{this.weather.title}}</h2>
+        <p>{{this.weather.text}}</p>
+      </ng-container>
+    </mat-grid-tile>
+  </div>
+
+  <mat-grid-tile [colspan]="2" [rowspan]="1.5">
+
+
+    <h2>
+      <div>
+        The Party is on day {{this.dayTracker}}
+      </div>
+      <div>
+        <ul class="nav">
+          <li>Food: {{partyFood}} </li>
+          <br>
+          <li>Water: {{partyWater}}</li>
+          <br>
+          <li>space: {{partySpace}}</li>
+
+        </ul>
+      </div>
+
+      <label>Daily food consumption</label>
+      <div>
+        <div>
+          <input [(ngModel)]="this.dailyFood" placeholder="change food consumption rate">
+        </div>
+        <label>Daily water consuption:</label>
+        <div>
+          <input [(ngModel)]="this.dailyWater" placeholder="change water consuption rate">
+        </div>
+      </div>
+      <div>
+        <ul>
+          <li>Party Food Supply: {{this.partyFood}}</li>
+          <li>
+            <input placeholder="change food" [(ngModel)]="partyFood">
+          </li>
+          <li>Party Water Supply: {{this.partyWater}}</li>
+          <li>
+            <input placeholder="change food" [(ngModel)]="partyWater">
+          </li>
+        </ul>
+      </div>
+    </h2> -->
+<!-- </mat-grid-tile> -->
+
+<!-- <mat-grid-tile [colspan]="2" [rowspan]="1">
+
+
+  <button (click)="getBeach();">Beach</button>
+  <button (click)="getNoUndead();">NoUndead</button>
+  <button (click)="getUndead();">UndeadJungle</button>
+  <button value="greaterUndead()" (click)="getGreaterUndead();">GreaterUndeadJungle</button>
+  <button value="river" (click)="getRiver()">River</button>
+  <button value="river" (click)="getSwamp()">Swamp</button>
+  <button (click)="this.undeadService.getCurrentMonster('Guard')">test button</button>
+</mat-grid-tile>
+<mat-grid-tile class="result-grid-tile" [colspan]="1" [rowspan]="1">
+
+  <ng-template #noWeather>No weather yet, make a roll!</ng-template>
+  <div *ngIf="this.rollResults">
+    <ul>
+
+      <ng-container *ngFor="let result of this.rollResults">
+        <ng-container *ngIf="result.title">
+          <li>
+            <mat-card>
+              <mat-card-title class="encounter"> {{result.title}} </mat-card-title>
+              <mat-card-content>{{result.text}} </mat-card-content>
+            </mat-card>
+          </li>
+        </ng-container>
+      </ng-container>
+    </ul>
+  </div>
+</mat-grid-tile> -->
