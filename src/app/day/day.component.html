@@ -1,11 +1,12 @@
-
-<div class="banner-image">
+<div class="main-container">
+<div class="banner-image imageRevealAnimation">
 
 </div>
+
 <div class="wrapper">
   <div class="side-box">
     <div class="party-info-box box red-text-lg">
-      <div class="red-text-lg">
+      <!-- <div class="red-text-lg">
         Roll Some Die
         <select #dice>
           <option value="1">1</option>
@@ -30,10 +31,10 @@
           <button (click)="rollDice(faces.value, dice.value)">Roll</button>
           <h4 class="red-text-lg die-roll">{{lastRoll}}</h4>
          </div>
+ -->
 
 
-
-      <div class="red-border"></div>
+      <!-- <div class="red-border"></div> -->
     </div>
     <div class="dm-controls-box red-text-lg box">
       <div class="box-shade"></div>
@@ -135,6 +136,10 @@
       </ng-template>
     </div>
   </div>
+</div>
+<div class="footer imageRevealAnimation">
+  <p>footer will go here</p>
+</div>
 </div>
 <!-- <mat-grid-list cols="4" rowHeight="3:1" >
   <div *ngIf="this.weather; else noWeather">

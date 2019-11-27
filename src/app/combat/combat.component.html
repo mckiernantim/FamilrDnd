@@ -1,11 +1,11 @@
-<div class="wrapper">
+<div class="wrapper imageRevealAnimation">
   <div class="side-box box">
-    <form #monsterName>
+    <form #monsterName >
       <label for="monsterTitle">enter a monster name </label>
 
-      <input #monsterTitle>
+      <input type="text" #monsterTitle class="zoom">
       <label for="dice">how many monsters?</label>
-      <input placeholder="how many mobs you need?" [(ngModel)]="monsterNumber" name="number">
+      <input type="text" placeholder="how many mobs you need?" [(ngModel)]="monsterNumber" name="number">
 
 
       <button (click)="checkMonster(monsterTitle.value, 0)">Populate Monsters</button>
@@ -18,22 +18,44 @@
   </div>
   <div class="main-box box">
 
-    <div class="monster-card box" *ngFor="let monster of monsters let i = index"  id ="box{{i+1}}">
+    <div class="monster-card box imageRevealAnimation zoom" *ngFor="let monster of monsters let i = index" id="box{{i+1}}">
       <div class="monster-picture" (click)="selectMonsterBox($event)">
-        <a class="skull-icon" (click)="closeMonsterBox($event)"><img class="skull-icon" src="assets/skull.png"></a>
+        <a class="skull-icon" (click)="closeMonsterBox($event)">
+          <img class="skull-icon" src="assets/skull.png">
+        </a>
       </div>
-      <div class="monster-title" #monsterCard{{i}} >
-        <h4>{{monster.name}}</h4>
+      <div class="monster-title" #monsterCard{{i}}>
+        <h4>{{monster.name}} </h4>
+        <div *ngFor="let condition of monster.conditions let i=index">
+           Conditions: <h6 class="monster-condition zoom" (click)="removeCondition($event.target.id, 1)" id="{{i}}">{{condition}}</h6>
+        </div>
+     
       </div>
       <div class="monster-stats">
-        <p>HP:
-          <input type=text  class= "monster-hp"placeholder="{{monster.hit_points}}">/{{monster.hit_points}}</p>
-        <p>AC: {{monster.armor_class}}</p>
-        <p>STR: {{monster.strength}}</p>
-        <p>DEX: {{monster.dexterity}}</p>
-        <p>INT: {{monster.intelligence}}</p>
-        <p>CON: {{monster.constitution}}</p>
-        <p>WIS: {{monster.wisdom}}</p>
+        <div class="stats">
+          <h5>HP:
+            <input class="monster-hp zoom" placeholder="{{monster.current_hit_points}}">/{{monster.hit_points}}</h5>
+
+          <h5> AC:{{monster.armor_class}} </h5>
+          <br>
+        </div>
+        <div class="stats">
+          <h6> STR: {{monster.strength}} </h6>
+          <br>
+          <h6> DEX: {{monster.dexterity}} </h6>
+          <br>
+
+          <h6> INT: {{monster.intelligence}} </h6>
+          <br>
+          <h6> CON: {{monster.constitution}} </h6>
+          <br>
+          <h6> WIS: {{monster.wisdom}} </h6>
+          <br>
+          <h6> CHA: {{monster.charisma}} </h6>
+          <br>
+        </div>
+
+
       </div>
     </div>
     <div class="monster-card" *ngFor="let monster of addedMonsters let i=index ">
@@ -44,8 +66,9 @@
         <p>{{monster.name}} {{i+1}}</p>
       </div>
       <div class="monster-stats">
-        HP:
-        <input type=text placeholder="{{monster.hit_points}}" *ngModel="this.addedMonsters[i].hit_points">
+        <h3>HP:
+          <input placeholder="{{monster.hit_points}}" *ngModel="this.addedMonsters[i].hit_points">
+        </h3>
 
         <p>AC: {{monster.armor_class}}</p>
         <p>STR: {{monster.strength}}</p>
@@ -59,10 +82,19 @@
         <button type="button" (click)="checkMonster(monsterName.value, 1)">Get em</button>
       </form>
     </div>
-   
-</div>
-<div class="bottom-box box">
- 
+    <div *ngIf="monsters.length" class="monster-card add-single-monster">
+        <form #singleMonster  >
+            <h5>Add another</h5>
+            <label for="monsterTitle">name</label>
+            <input type="text" #monsterTitle2 class="zoom">
+            
+           <button (click)="checkMonster(monsterTitle2.value, 1)">Get em!</button>
+          </form> 
+        </div>
+
+  </div>
+  <div class="bottom-box box">
+
     <div class="add-monster-button">
       <button (click)="addMonsterCard()">
         Add Monster
@@ -70,24 +102,55 @@
     </div>
   </div>
   <div class="selected-details box" *ngIf="this.selected || this.selected === 0; else noMonster">
-      <h4>{{monsters[selected].name}}</h4>
-      <div *ngFor="let action of monsters[selected].actions | keyvalue">
-        <p>Attacks: {{action.value.desc}}</p>
-      </div>
-      <div *ngFor="let action of monsters[selected].special_abilities | keyvalue">
-          <p>Special Abilities: <strong>{{action.value.name}}</strong> {{action.value.desc}}</p>
-        </div>
-        <!-- all other stats -->
-    <!-- <div class="selected-stats" *ngFor="let stat of this.monsters[selected] | keyvalue">
-       <p>{{stat.key}}: {{stat.value}}</p> 
-     
-    </div> -->
-  
+    <div>
+      <h4>
+        <strong>{{monsters[selected].name}}</strong>
+      </h4>
+      <h5>Hp:
+        <input [(ngModel)]='this.monsters[selected].current_hit_points' #selectedMonster style="font-size:18px ;color: #92260f"
+          class="selected-hp" placeholder="{{monsters[selected].current_hit_points}}" (keyup.enter)="updateMonster(selectedMonster.value)">/{{monsters[selected].hit_points}}
+      </h5>
+      <select #selectedConditon placeholder="status" style="width:100px" (change)="updateCondition(selectedConditon.value)">
+        <option value="">Status</option>
+        <option value="blinded">Blinded</option>
+
+        <option value="charmed">charmed</option>
+        <option value="deafened">deafened</option>
+        <option value="fatigued">fatigued</option>
+        <option value="frightened">frightened</option>
+        <option value="grappled">grappled</option>
+        <option value="incapacitated">incapacitated</option>
+        <option value="paralyzed">paralyzed</option>
+        <option value="petrified">petrified</option>
+        <option value="poisoned">poisoned</option>
+        <option value="prone">prone</option>
+        <option value="restrained">restrained</option>
+        <option value="stunned">stunned</option>
+        <option value="unconscious">unconscious</option>
+
+
+
+      </select>
     </div>
-    <ng-template #noMonster >
-      <div class="box">
-      this is where your monster will live
+
+    <h4 style="font-weight:bold">Attacks:</h4>
+    <div *ngFor="let action of monsters[selected].actions | keyvalue">
+      <p class="monster-text">{{action.value.desc}}</p>
+    </div>
+    <h4>Special Abilities:</h4>
+    <div *ngFor="let action of monsters[selected].special_abilities | keyvalue">
+      <p class="monster-text">
+        <span style="font-weight:bold">{{action.value.name}}</span> {{action.value.desc}}</p>
+    </div>
+    <button (click)="updateMonster()">Update</button>
+  </div>
+  <ng-template #noMonster>
+    <div class="box">
+      GO GET SOME MONSTERS
     </div>
   </ng-template>
- 
+  <div class="footer imageRevealAnimation">
+
+  </div>
+
 </div>

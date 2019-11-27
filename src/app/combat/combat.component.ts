@@ -11,101 +11,142 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./combat.component.css']
 })
 export class CombatComponent implements OnInit {
-  selected:number;
-  monsters:any[] = []
-  addedMonsters:any[] =[]
+  
+  selected: number;
+  monsters: any[] = []
+  addedMonsters: any[] = []
   currentMonster: any;
   secondaryMonster: any;
-  response:any;
-  monsterNumber:number = 0;
-  arr:any[];
-  num:number;
+  response: any;
+  monsterNumber: number = 0;
+  arr: any[];
+  num: number;
   currentMonsterUrl: string;
-  $currentMonster:Observable<any>;
-  $monsterData:Observable<any>;
-  constructor( private ms:MonsterService) { }
+  $currentMonster: Observable<any>;
+  $monsterData: Observable<any>;
+  constructor(private ms: MonsterService) { }
 
   ngOnInit() {
-   
+
   }
-  listMonsters(){
+
+  updateMonster(number){
+    this.monsters[this.selected].current_hit_points = number;
+ }
+ updateCondition(condition){
+  this.monsters[this.selected].conditions.push(condition)
+  console.log(this.monsters[this.selected].conditions)
+ }
+ removeCondition(num){
+   this.monsters[this.selected].conditions.splice(num, 1)
+
+
+ }
+  listMonsters() {
     console.log(this.monsters)
   }
-  listSelected(){
-    console.log(this.monsters[this.selected-1])
+  listSelected() {
+    console.log(this.monsters[this.selected - 1])
   }
-checkMonster(name, num?){
-  console.log("!!!!!!!!!!!!!!")
-this.$currentMonster = this.ms.getMonsterUrl(name);
-this.$currentMonster.subscribe(data=>{
-  this.response=data
-  if(this.response.results[0].url && num !=1){
-   
-    let url = this.response.results[0].url;
-   
-   this.$monsterData = this.ms.getCurrentMonster(url);
+  processString(str){
+    let newString = str.toLowerCase();
+    newString = newString.split("");
+    if(newString[0]!=true){
+      console.log("both are letters")
+    } else{
+      newString.shift()
+    }
+    newString[0] = newString[0].toUpperCase();
+    for ( let i=0; i<newString.length; i++){
+      
+      console.log("in loop" + newString[i])
+      if(newString[i]===" "){
 
-   this.$monsterData.subscribe(data =>{
-     this.currentMonster=data;
-    
-     for (let i = 0 ; i<this.monsterNumber; i++){
-     
-       let originalName = this.currentMonster.name;
-       console.log(this.currentMonster.name)
-     
-       this.monsters.push(this.currentMonster)
-       let newName = this.monsters[i]['name'] = this.currentMonster.name +" " + `${i+1}`
-       this.monsters[i].name = newName
+        console.log(newString[i+1])
+        newString[i+1] = newString[i+1].toUpperCase()
       
-       console.log(this.monsters)
-      
-     }
-     this.monsters.length = this.monsterNumber
-   
-   })
-  }else if( this.response.results[0].url) {
-    let url = this.response.results[0].url;
-    this.$monsterData = this.ms.getCurrentMonster(url);
-    this.$monsterData.subscribe(data =>{
-      this.secondaryMonster=data;
-      console.log(this.secondaryMonster)
-      for (let i = 0 ; i<1; i++){
-        if(this.addedMonsters[i]==null){
-          this.addedMonsters.splice(i)
-        }
-        this.addedMonsters.push(this.secondaryMonster)
+        
       }
-      this.monsters.length = this.monsterNumber
-      console.log(this.monsters.length)
-      console.log(this.monsterNumber)
+      
+    }
+    console.log(newString)
+    newString = newString.join("");
+    return newString
+
+
+  }
+  checkMonster(name, num?) {
+    let url = this.processString(name)
+    this.$currentMonster = this.ms.getMonsterUrl(url);
+    this.$currentMonster.subscribe(data => {
+      this.response = data;
+      if (this.response.results[0].url && num != 1) {
+        let url = this.response.results[0].url;
+        this.$monsterData = this.ms.getCurrentMonster(url);
+        this.$monsterData.subscribe(data => {
+          this.currentMonster = data;
+          for (let i = 0; i < this.monsterNumber; i++) {
+            let newMonster = Object.assign({},this.currentMonster);
+            newMonster.current_hit_points = newMonster.hit_points;
+            newMonster.conditions = [];
+            newMonster.name = this.currentMonster.name + " " + `${i + 1}`
+            this.monsters.push(newMonster)
+          }
+          
+        })
+      } else if (this.response.results[0].url) {
+        console.log("second statement")
+        let url = this.response.results[0].url;
+        this.$monsterData = this.ms.getCurrentMonster(url);
+        this.$monsterData.subscribe(data => {
+          this.secondaryMonster = data;
+          for (let i = 0; i < 1; i++) {
+            let newMonster = Object.assign({},this.secondaryMonster);
+            newMonster.current_hit_points = newMonster.hit_points;
+            newMonster.conditions = [];
+            newMonster.name = this.secondaryMonster.name + " " + `${i + 1}`
+            this.monsters.push(newMonster)
+            console.log(this.monsters)
+          }
+          
+         })
+      }
     })
   }
-})
-}
-addMonsterCard(){
- this.addedMonsters.length++
+  addMonsterCard() {
+    this.addedMonsters.length++
 
-}
-seeMonsters(){
-  console.log(this.monsters + "<-------- this.monsters")
-  console.log(this.addedMonsters)
-}
-closeMonsterBox(event){
- // Get the id of the button being pushed then remove from Monsters
- let monsterId = (parseInt(event.target.parentNode.parentNode.parentNode.id.replace("box","")))
- console.log(monsterId)
- this.monsters.splice(monsterId, 1);
- console.log(this.monsters + " monster array")
+  }
+  seeMonsters() {
+    console.log(this.monsters + "<-------- this.monsters")
+    console.log(this.addedMonsters)
+  }
+  closeMonsterBox(event) {
+    // Get the id of the button being pushed then remove from Monsters
+    let monsterId = (parseInt(event.target.parentNode.parentNode.parentNode.id.replace("box", "")))
+    console.log(monsterId)
+    this.monsters.splice(monsterId, 1);
+    console.log(this.monsters + " monster array")
+
+  }
+  selectMonsterBox(event) {
+    // zero out our selected box styles
+
+    let selected = Array.from(document.getElementsByClassName("selected"));
+    selected.forEach(element => element.classList.remove("selected"))
+    let titles = Array.from(document.getElementsByClassName("selected-title"))
+    titles.forEach(element => element.classList.remove("selected-title"))
+    // add a new css class
+    if (event.target.className === "monster-picture") {
+      
+      event.target.parentNode.classList.add("selected")
+      event.target.parentNode.childNodes[1].classList.add("selected-title")
+      event.target.classList.add("selected")
+      //  get the index of the selected number to pass on later
+      this.selected = parseInt(event.target.parentNode.id.replace("box", "")) - 1
+    
+    }
+  }
  
 }
-selectMonsterBox(event){
-  let selected = Array.from(document.getElementsByClassName("selected"));
-  selected.forEach(element => element.classList.remove("selected"))
-  if(event.target.className === "monster-picture"){
-   console.log(event.target.parentNode)
-   event.target.parentNode.classList.add("selected")
-   this.selected = parseInt(event.target.parentNode.id.replace("box", ""))-1
-   console.log(this.selected)
-  }}
-} 
 

@@ -14,6 +14,20 @@
       }
     
 }
+@keyframes imageReveal{
+  0%{
+      transform: rotate(xx);
+      opacity: .01;
+      }
+  99%{
+      transform: rotate(xx);
+      opacity: 1.0;
+      }
+}
+
+.imageRevealAnimation{
+  animation: imageReveal 1.5s normal 0s linear;
+}
 @keyframes textReveal{
   0%{
       transform: rotate(xx);
@@ -46,19 +60,21 @@
 }
 
 .elementToAnimate{
-  animation: tbannerReveal1.5s normal forwards 0s linear;
+  animation: tbannerReveal 1.5s normal forwards 0s linear;
 }
 
 .elementToAnimate{
-  animation: tbannerReveal6s infinite 0s linear;
+  animation: tbannerReveal 6s infinite 0s linear;
 }
 .banner-image{
-  animation: tbannerReveal1.5s 0s linear;
-  background-image: url(https://geekandsundry.com/wp-content/uploads/2017/09/ToA_Icons_Minis_HeaderImage.jpg);
+
+  background-image: url(/assets/victor-maury-junglesofchult.jpg);
   height:600px;
   background-repeat: no-repeat;
   background-size:cover;
   box-shadow: 0 0 1.5em #867453;
+  margin-bottom: 17%;
+  background-position-y: 58%;
 
 }
 .top-box{
@@ -79,12 +95,12 @@ max-width:100%;
 .box-shade{
 height: 22px;
 background-color: #f4c756;
-
-
-
-
 background-image: linear-gradient(to bottom right, #e5d099, #f9f3d8)
 
+}
+.footer{
+  background-color:green;
+  
 }
 .button{
   background-color:#b0a383;
@@ -115,11 +131,14 @@ background-image: linear-gradient(to bottom right, #e5d099, #f9f3d8)
   .wrapper{
     opacity: 0;
     grid-template-columns: 1fr 4fr;
-  
+    height:100%;
     animation: slideUp 1.5s normal forwards 1s;
-
-    
-  }
+    margin-bottom:-45%;
+}
+.box{
+  border-radius: 5px;
+  border:2px solid #922610
+}
 }
 @media screen and (max-width:750px){
   .wrapper{
@@ -127,7 +146,10 @@ background-image: linear-gradient(to bottom right, #e5d099, #f9f3d8)
     opacity:0;
     display:grid;
     height:auto;
+    height:100%;
     grid-template-columns: 1fr;
+    margin-bottom:-45%;
+    padding:20px;
    
    
   }
@@ -139,7 +161,10 @@ background-image: linear-gradient(to bottom right, #e5d099, #f9f3d8)
   }
 
   .box{
-    display:grid
+    display:grid;
+    border-radius: 5px;
+    border:2px solid #922610
+
   }
   .day-buttons-box{
     padding:20px;
@@ -159,7 +184,7 @@ background-image: linear-gradient(to bottom right, #e5d099, #f9f3d8)
 
 .wrapper {
  
-  
+  padding:20px;
   font-size: 13.5px;
   line-height: 1.2em;
   box-sizing: border-box;
@@ -191,6 +216,12 @@ background-image: linear-gradient(to bottom right, #e5d099, #f9f3d8)
   width:auto;
   height:100%
   
+}
+.monster-condition{
+ 
+  cursor: pointer;
+  animation: bannerReveal 1.2s 0s linear;
+
 }
 
 .black-text{
@@ -323,4 +354,12 @@ ul {
   /* Change the link color to #111 (black) on hover */
   li a:hover {
     background-color: #111;
+  }
+
+  .footer{
+   
+    height: 400px;
+    background-image: url(/assets/Tombof9.jpg);
+    background-position-y: 22%;
+    background-repeat: no-repeat;
   }
