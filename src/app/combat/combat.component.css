@@ -14,6 +14,13 @@ label{
         opacity: 1.0;
         }
   }
+  @media screen and (min-width:751px){
+    .wrapper{
+      opacity:1;
+      grid-template-columns:repeat(3, 1fr)
+  
+    }
+}
   .imageRevealAnimation{
     animation: imageReveal 1.5s normal;
     
@@ -69,6 +76,16 @@ label{
 
     border: 2px solid #92260f;
     width:auto;
+    border-radius: 5px;
+  
+}
+.monster-initiative{
+    background-color:#922710;
+    width:130px;
+    border-radius: 50%;
+    position: relative;
+    bottom: 20%;
+    text-align: center;
   
 }
 .monster-card ::placeholder{
@@ -106,12 +123,62 @@ label{
     width:60px !important;
 }
 
+.goblin{
+    background-image: url(/assets/goblin.jpeg)
+}
+.human{
+    background-image: url(/assets/human5e.jpg);
+    background-repeat: no-repeat;
+    background-position-y: 19% !important;
+   
+}
+.dragon{
+    background-image:url(/assets/dragon5e.jpeg)
+}
+.aberration{
+    background-image:url(/assets/aberation.jpeg)
+}
+.plant{
+    background-image:url(/assets/assassinVine.jpg)
+}
+.celestial{
+    background-image:url(/assets/celestial.jpg)
+}
+.construct{
+    background-image:url(/assets/construct.jpeg);
+    background-position-y: 18% !important;
+}
+.beast{
+    background-image: url(/assets/beast.jpg)
+}
+.fey{
+    background-image:url(/assets/dryad.png);
+    background-position-y: -10% !important;
+    background-repeat: no-repeat;
+}
+.elemental{
+    background-image:url(/assets/fireElemental.jpeg)
+}
+.monstrosity{
+    background-image:url(/assets/owlbear.jpeg)
+}
+.undead{
+    background-image:url(/assets/skeleton.jpeg)
+}
+
+.giant{
+    background-image: url(/assets/ogre.jpeg);
+    background-position-y: 5% !important;
+}
+.swarm-of-tiny-beast{
+background-image: url(/assets/spiderSwarm.png)
+}
 .monster-picture{
     display: flex;
     justify-content: flex-end;
     height: 250px;
     width: 250px;
-    background-image: url(/assets/goblin.jpeg);
+    border-radius:5px;
     background-size: cover;
     /* background: no-repeat; */
     background-position-y: 48%;
@@ -134,4 +201,12 @@ label{
     
     background: contain;
     background-image: url(/assets/skull.png)
+}
+
+.monster-notes{
+    border-top:2px solid #92260f;
+    width:50%
+}
+.monster-notes-card{
+    border-top: 2px solid #92260f
 }

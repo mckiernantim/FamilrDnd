@@ -19,6 +19,7 @@ import { NavbarComponent } from './navbar/navbar.component'
 import {RouterModule} from "@angular/router";
 import { CombsatComponent } from './combsat/combsat.component';
 import { CombatComponent } from './combat/combat.component'
+import { Ng2CompleterModule} from 'ng2-completer'
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
@@ -51,6 +52,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatCardModule,
     AppRoutingModule,
     MatMenuModule,
+    Ng2CompleterModule,
+ 
     
     
 

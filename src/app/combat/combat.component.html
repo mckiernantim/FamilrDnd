@@ -1,42 +1,112 @@
 <div class="wrapper imageRevealAnimation">
   <div class="side-box box">
+    <H3>MONSTER FINDER</H3>
     <form #monsterName >
       <label for="monsterTitle">enter a monster name </label>
-
-      <input type="text" #monsterTitle class="zoom">
+      <ng2-completer #monsterTitle class="zoom" [datasource]="monsterNames" [minSearchLength]="2"></ng2-completer>
       <label for="dice">how many monsters?</label>
       <input type="text" placeholder="how many mobs you need?" [(ngModel)]="monsterNumber" name="number">
 
 
-      <button (click)="checkMonster(monsterTitle.value, 0)">Populate Monsters</button>
+      <button (click)="checkMonster(monsterTitle.value, 0)">MAKE SOME MONSTERRS</button>
     </form>
     <div class="monster-detail">
 
     </div>
-    <button (click)="listMonsters()">listMonsters</button>
+    <!-- <button (click)="listMonsters()">listMonsters</button>
     <button (click)="listSelected()">selected</button>
+    <button (click)="fotology()">fotology</button> -->
   </div>
-  <div class="main-box box">
-
-    <div class="monster-card box imageRevealAnimation zoom" *ngFor="let monster of monsters let i = index" id="box{{i+1}}">
-      <div class="monster-picture" (click)="selectMonsterBox($event)">
+  <div class="main-box box" >
+      
+     
+    <div class="monster-card box imageRevealAnimation zoom" 
+    *ngFor="let monster of monsters let i = index" 
+    [ngSwitch]="monster.type"
+    id="box{{i+1}}">
+       <div  *ngSwitchCase="'humanoid'"class="monster-picture human" (click)="selectMonsterBox($event)">
         <a class="skull-icon" (click)="closeMonsterBox($event)">
           <img class="skull-icon" src="assets/skull.png">
         </a>
       </div>
-      <div class="monster-title" #monsterCard{{i}}>
+      <div  *ngSwitchCase="'dragon'"class="monster-picture dragon" (click)="selectMonsterBox($event)">
+        <a class="skull-icon" (click)="closeMonsterBox($event)">
+          <img class="skull-icon" src="assets/skull.png">
+        </a>
+      </div>
+      <div  *ngSwitchCase="'aberration'"class="monster-picture aberration" (click)="selectMonsterBox($event)">
+        <a class="skull-icon" (click)="closeMonsterBox($event)">
+          <img class="skull-icon" src="assets/skull.png">
+        </a>
+      </div>
+      <div  *ngSwitchCase="'plant'"class="monster-picture plant" (click)="selectMonsterBox($event)">
+        <a class="skull-icon" (click)="closeMonsterBox($event)">
+          <img class="skull-icon" src="assets/skull.png">
+        </a>
+      </div>
+      <div  *ngSwitchCase="'celestial'"class="monster-picture celestial" (click)="selectMonsterBox($event)">
+        <a class="skull-icon" (click)="closeMonsterBox($event)">
+          <img class="skull-icon" src="assets/skull.png">
+        </a>
+      </div>
+      <div  *ngSwitchCase="'construct'"class="monster-picture construct" (click)="selectMonsterBox($event)">
+        <a class="skull-icon" (click)="closeMonsterBox($event)">
+          <img class="skull-icon" src="assets/skull.png">
+        </a>
+      </div>
+      <div  *ngSwitchCase="'beast'"class="monster-picture beast" (click)="selectMonsterBox($event)">
+        <a class="skull-icon" (click)="closeMonsterBox($event)">
+          <img class="skull-icon" src="assets/skull.png">
+        </a>
+      </div>
+      <div  *ngSwitchCase="'fey'"class="monster-picture fey" (click)="selectMonsterBox($event)">
+        <a class="skull-icon" (click)="closeMonsterBox($event)">
+          <img class="skull-icon" src="assets/skull.png">
+        </a>
+      </div>
+      <div  *ngSwitchCase="'elemental'"class="monster-picture elemental" (click)="selectMonsterBox($event)">
+        <a class="skull-icon" (click)="closeMonsterBox($event)">
+          <img class="skull-icon" src="assets/skull.png">
+        </a>
+      </div>
+      <div  *ngSwitchCase="'monstrosity'"class="monster-picture monstrosity" (click)="selectMonsterBox($event)">
+        <a class="skull-icon" (click)="closeMonsterBox($event)">
+          <img class="skull-icon" src="assets/skull.png">
+        </a>
+      </div>
+      <div  *ngSwitchCase="'undead'"class="monster-picture undead" (click)="selectMonsterBox($event)">
+        <a class="skull-icon" (click)="closeMonsterBox($event)">
+          <img class="skull-icon" src="assets/skull.png">
+        </a>
+      </div>
+      <div  *ngSwitchCase="'giant'"class="monster-picture giant" (click)="selectMonsterBox($event)">
+        <a class="skull-icon" (click)="closeMonsterBox($event)">
+          <img class="skull-icon" src="assets/skull.png">
+        </a>
+      </div>
+      <div  *ngSwitchCase="'swarm of tiny beasts'"class="monster-picture swarm-of-tiny-beast" (click)="selectMonsterBox($event)">
+        <a class="skull-icon" (click)="closeMonsterBox($event)">
+          <img class="skull-icon" src="assets/skull.png">
+        </a>
+      </div>
+      <div class="monster-title" id ='monsterCard{{i}}' #monsterCard{{i}}>
         <h4>{{monster.name}} </h4>
+        Conditions:
         <div *ngFor="let condition of monster.conditions let i=index">
-           Conditions: <h6 class="monster-condition zoom" (click)="removeCondition($event.target.id, 1)" id="{{i}}">{{condition}}</h6>
+           <h6 class="monster-condition zoom" (click)="removeCondition($event.target.id, $event.target.parentNode)" id="{{i}}">{{condition}}</h6>
         </div>
      
       </div>
       <div class="monster-stats">
         <div class="stats">
+          <div style="width:100%">
           <h5>HP:
             <input class="monster-hp zoom" placeholder="{{monster.current_hit_points}}">/{{monster.hit_points}}</h5>
-
-          <h5> AC:{{monster.armor_class}} </h5>
+          </div>
+            <h5> AC:{{monster.armor_class}} </h5>
+            <div class="monster-initiative">
+            <h5 style="font-size:22px">Init: {{monster.initiative}}</h5>
+          </div>
           <br>
         </div>
         <div class="stats">
@@ -54,9 +124,16 @@
           <h6> CHA: {{monster.charisma}} </h6>
           <br>
         </div>
+        <div class="monster-notes-card">
+          <div *ngIf="monster.notes">
+            Notes: {{monster.notes}}
+          </div>
+        
+        </div>
 
 
       </div>
+    
     </div>
     <div class="monster-card" *ngFor="let monster of addedMonsters let i=index ">
       <div class="monster-picture">
@@ -85,8 +162,8 @@
     <div *ngIf="monsters.length" class="monster-card add-single-monster">
         <form #singleMonster  >
             <h5>Add another</h5>
-            <label for="monsterTitle">name</label>
-            <input type="text" #monsterTitle2 class="zoom">
+            <label for="monsterTitle2">name</label>
+            <ng2-completer #monsterTitle2 class="zoom" [datasource]="monsterNames" [minSearchLength]="2"></ng2-completer>
             
            <button (click)="checkMonster(monsterTitle2.value, 1)">Get em!</button>
           </form> 
@@ -94,11 +171,28 @@
 
   </div>
   <div class="bottom-box box">
+    
 
     <div class="add-monster-button">
-      <button (click)="addMonsterCard()">
-        Add Monster
+      <H3>SPELL FINDER</H3>
+      <label for="spellName">Enter Spell Name</label>
+        <ng2-completer #spellName class="zoom" [datasource]="spellNames" [minSearchLength]="2"></ng2-completer>
+      <button (click)="getSpell(spellName.value)">
+       Get Spell
       </button>
+      <div *ngIf="this.spellSelected">
+        <h4>Name: {{this.currentSpell.name}}</h4>
+        <p>Level: {{this.currentSpell.level}}</p>
+        <p>Range: {{currentSpell.range}}</p>
+        <p>Casting Time: {{currentSpell.casting_time}}</p>
+        <p>Duration: {{currentSpell.duration}}</p>
+        <p>Components: {{currentSpell.components}}</p>
+        <p>Concentration: {{currentSpell.concentration}}</p>
+        <p *ngFor="let desc of this.currentSpell.desc">{{desc}} </p>
+        
+
+        
+      </div>
     </div>
   </div>
   <div class="selected-details box" *ngIf="this.selected || this.selected === 0; else noMonster">
@@ -127,26 +221,24 @@
         <option value="restrained">restrained</option>
         <option value="stunned">stunned</option>
         <option value="unconscious">unconscious</option>
-
-
-
       </select>
     </div>
 
     <h4 style="font-weight:bold">Attacks:</h4>
     <div *ngFor="let action of monsters[selected].actions | keyvalue">
-      <p class="monster-text">{{action.value.desc}}</p>
+      <p class="monster-text"><span style="font-weight:bold">{{action.value.name}}:</span> {{action.value.desc}}</p>
     </div>
     <h4>Special Abilities:</h4>
     <div *ngFor="let action of monsters[selected].special_abilities | keyvalue">
       <p class="monster-text">
-        <span style="font-weight:bold">{{action.value.name}}</span> {{action.value.desc}}</p>
+        <span style="font-weight:bold">{{action.value.name}}:</span> {{action.value.desc}}</p>
     </div>
-    <button (click)="updateMonster()">Update</button>
+    <textarea  placeholder="notes..."class="monster-notes" [(ngModel)]='this.monsters[selected].notes'>make a note.</textarea>
+
   </div>
   <ng-template #noMonster>
     <div class="box">
-      GO GET SOME MONSTERS
+      Details on your mobs live here - hopefully longer than your players
     </div>
   </ng-template>
   <div class="footer imageRevealAnimation">

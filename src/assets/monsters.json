@@ -16444,9 +16444,9 @@
             "armor_desc": "natural armor"
         },
         {
-            "name": "Swarm of Bats",
+            "name": "Swarm Of Bats",
             "size": "Medium",
-            "type": "swarm of Tiny beasts",
+            "type": "swarm Of Tiny beasts",
             "subtype": "",
             "alignment": "unaligned",
             "armor_class": 12,
@@ -16497,9 +16497,9 @@
             }
         },
         {
-            "name": "Swarm of Beetles",
+            "name": "Swarm Of Beetles",
             "size": "Medium",
-            "type": "swarm of Tiny beasts",
+            "type": "swarm Of Tiny beasts",
             "subtype": "",
             "alignment": "unaligned",
             "armor_class": 12,
@@ -16541,9 +16541,9 @@
             }
         },
         {
-            "name": "Swarm of Centipedes",
+            "name": "Swarm Of Centipedes",
             "size": "Medium",
-            "type": "swarm of Tiny beasts",
+            "type": "swarm Of Tiny beasts",
             "subtype": "",
             "alignment": "unaligned",
             "armor_class": 12,
@@ -16573,7 +16573,7 @@
             "actions": [
                 {
                     "name": "Bites",
-                    "desc": "Melee Weapon Attack: +3 to hit, reach 0 ft., one target in the swarm's space. Hit: 10 (4d4) piercing damage, or 5 (2d4) piercing damage if the swarm has half of its hit points or fewer.\nA creature reduced to 0 hit points by a swarm of centipedes is stable but poisoned for 1 hour, even after regaining hit points, and paralyzed while poisoned in this way.",
+                    "desc": "Melee Weapon Attack: +3 to hit, reach 0 ft., one target in the swarm's space. Hit: 10 (4d4) piercing damage, or 5 (2d4) piercing damage if the swarm has half of its hit points or fewer.\nA creature reduced to 0 hit points by a swarm Of centipedes is stable but poisoned for 1 hour, even after regaining hit points, and paralyzed while poisoned in this way.",
                     "attack_bonus": 3,
                     "damage_dice": "4d4"
                 }
@@ -16584,9 +16584,9 @@
             }
         },
         {
-            "name": "Swarm of Insects",
+            "name": "Swarm Of Insects",
             "size": "Medium",
-            "type": "swarm of Tiny beasts",
+            "type": "swarm Of Tiny beasts",
             "subtype": "",
             "alignment": "unaligned",
             "armor_class": 12,
@@ -16627,9 +16627,9 @@
             }
         },
         {
-            "name": "Swarm of Poisonous Snakes",
+            "name": "Swarm Of Poisonous Snakes",
             "size": "Medium",
-            "type": "swarm of Tiny beasts",
+            "type": "swarm Of Tiny beasts",
             "subtype": "",
             "alignment": "unaligned",
             "armor_class": 14,
@@ -16670,9 +16670,9 @@
             }
         },
         {
-            "name": "Swarm of Quippers",
+            "name": "Swarm Of Quippers",
             "size": "Medium",
-            "type": "swarm of Tiny beasts",
+            "type": "swarm Of Tiny beasts",
             "subtype": "",
             "alignment": "unaligned",
             "armor_class": 13,
@@ -16723,9 +16723,9 @@
             }
         },
         {
-            "name": "Swarm of Rats",
+            "name": "Swarm Of Rats",
             "size": "Medium",
-            "type": "swarm of Tiny beasts",
+            "type": "swarm Of Tiny beasts",
             "subtype": "",
             "alignment": "unaligned",
             "armor_class": 10,
@@ -16770,9 +16770,9 @@
             }
         },
         {
-            "name": "Swarm of Ravens",
+            "name": "Swarm Of Ravens",
             "size": "Medium",
-            "type": "swarm of Tiny beasts",
+            "type": "swarm Of Tiny beasts",
             "subtype": "",
             "alignment": "unaligned",
             "armor_class": 12,
@@ -16813,9 +16813,9 @@
             }
         },
         {
-            "name": "Swarm of Spiders",
+            "name": "Swarm Of Spiders",
             "size": "Medium",
-            "type": "swarm of Tiny beasts",
+            "type": "swarm Of Tiny beasts",
             "subtype": "",
             "alignment": "unaligned",
             "armor_class": 12,
@@ -16871,9 +16871,9 @@
             }
         },
         {
-            "name": "Swarm of Wasps",
+            "name": "Swarm Of Wasps",
             "size": "Medium",
-            "type": "swarm of Tiny beasts",
+            "type": "swarm Of Tiny beasts",
             "subtype": "",
             "alignment": "unaligned",
             "armor_class": 12,
