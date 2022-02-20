@@ -1,0 +1,25 @@
+<div class="news-container">
+  <button value="The Moot" (click)=makeNewsPaper()>make a news paper</button>
+  <div class="headline">
+    <h1>{{paper.headline}}</h1>
+    total articles: {{ totalArticles }}
+  </div>
+  <div *ngFor=" let page of paper.pages " class="body">
+    <div *ngFor='let article of page.articles' 
+    [ngStyle]="{'grid-column': article.columns }" 
+    class="article {{article.size}}" >
+      <div class="article-container" >
+        <h3 class="article-title">
+          {{article.title}} {{article.columns}}
+        </h3>
+        <p>
+          {{article.text}}
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>

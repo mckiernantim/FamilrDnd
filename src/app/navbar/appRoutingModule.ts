@@ -1,3 +1,5 @@
+import { NewsComponent } from './../news/news.component';
+import { TerminusComponent } from './../terminus/terminus.component';
 import { DayComponent } from './../day/day.component';
 import { CombatComponent } from './../combat/combat.component';
 
@@ -18,11 +20,20 @@ const routes: Routes = [
   },
   {
     path: "",
-    component: DayComponent
+    component: CombatComponent
   },
   {
     path:"JungleCrawl",
     component:DayComponent
+  },
+
+  {
+    path:"terminus",
+    component:TerminusComponent
+  },
+  {
+    path:"news",
+    component:NewsComponent
   }
 ];
 

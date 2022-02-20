@@ -1,9 +1,5 @@
-input[type=text]{
-    font-size:40px;
-}
-label{
-    font-size:1.5em !important
-}
+
+
 @keyframes imageReveal{
     0%{
         transform: rotate(xx);
@@ -20,7 +16,44 @@ label{
       grid-template-columns:repeat(3, 1fr)
   
     }
+    
 }
+@media screen and (max-width:750px){
+    .wrapper{
+    text-align: center !important;
+    padding: 5%;
+
+    display:block !important;
+    opacity:1 !important;
+  
+    }
+    .box{
+        padding:2%;
+        text-align: center !important;
+    }
+    .main-box{
+        display:block !important;
+    }
+    .monster-picture{
+        margin:0 auto;
+    }
+    .selected-stats-list{
+        display:block !important
+    }
+}
+input[type=text]{
+    font-size:40px;
+    min-width:75px
+
+}
+#addAnother{
+    display:none;
+}
+label{
+    font-size:1.5em !important
+}
+
+
   .imageRevealAnimation{
     animation: imageReveal 1.5s normal;
     
@@ -49,6 +82,14 @@ label{
     height:auto;
     grid-template-areas: "sidebox mainbox"
 }
+#addAnother{
+    display: none;
+    display: block;
+    text-align: left;
+    font-size: 28px;
+}
+
+
 .side-box{
     
     display:grid;
@@ -62,8 +103,8 @@ label{
  grid-template-rows: auto;
  grid-gap:1em;
  padding:20px;
- max-height: 400px;
- overflow: auto;
+ min-height: 500px !important; 
+ overflow: scroll;
 }
 .monster-picture{
     cursor: pointer;
@@ -79,8 +120,14 @@ label{
     border-radius: 5px;
   
 }
+.monster-picture :hover{
+    transform: scale(1.04);
+    transition: transfrom 1s;
+}
 .monster-initiative{
-    background-color:#922710;
+    color: #922710;
+
+    text-decoration: underline;
     width:130px;
     border-radius: 50%;
     position: relative;
@@ -97,6 +144,9 @@ label{
     border:#f8f3d8 3px solid !important;
 
 }
+.selected-hp{
+    min-width: 30%;
+}
 .add-single-monster{
     padding:15%;
 }
@@ -106,9 +156,17 @@ label{
 .selected-details ::placeholder {
     color:#92260f;
     font-size:2em;
+  
 }
 .selected-details{
-    line-height: normal
+    line-height: normal;
+ 
+}
+.details-top{
+    display:grid;
+    grid-template-columns:2fr 5fr ;
+    border-bottom: 4px solid #92260f;
+    
 }
 
 .selected ::placeholder{
@@ -209,4 +267,32 @@ background-image: url(/assets/spiderSwarm.png)
 }
 .monster-notes-card{
     border-top: 2px solid #92260f
+}
+
+.pre-search-main-text{
+    margin-left: 124%;
+    display: block;
+    width: 200%;
+    margin-top: 80%;
+    font-size: 22px;
+    line-height: 1.5;
+}
+.selected-stats-list{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.selected-stat{
+    padding:15%;
+    font-size:35px;
+}
+
+.footer{
+   background-image: url(https://vignette.wikia.nocookie.net/forgottenrealms/images/b/ba/Acererak-5e.jpg/revision/latest?cb=20190303130518);
+   height: 250px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: 37%;
+    background-position-x: center;
+    filter: sepia(75%);
+    
 }

@@ -1,0 +1,118 @@
+<div class="terminus">
+  <div class="cell-1">
+    <button class="cybr-btn glow">
+      <span aria-hidden>Local_Area_Data</span>
+      <span aria-hidden class="cybr-btn__glitch glow">Location Generator</span>
+      <span aria-hidden class="cybr-btn__tag  glow">D_100</span>
+    </button>
+    <div class="data-feed two-column">
+      <!-- <div>
+      <h3>X streets</h3>
+      <ul class="street-list">
+        <li *ngFor = "let street of streetsX ; let i = index" >
+          {{i}}  :  {{street}}
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h3>Y streets</h3>
+      <ul class="street-list">
+        <li *ngFor = "let street of streetsY; let i = index" class="street-list"> 
+          {{i}} : {{street}}
+        </li>
+      </ul>
+    </div> -->
+    </div>
+  </div>
+  <div class="cell-2">
+    <button class="cybr-btn glow" (click)="this.getPerson()">
+      Access_Personel_File<span aria-hidden>_</span>
+      <span aria-hidden class="cybr-btn__glitch glow">NPC Generator</span>
+      <span aria-hidden class="cybr-btn__tag glow">D_100</span>
+    </button>
+    <div class="data-feed-short glow " *ngIf="dataReady">
+      <div>
+        <h3>Terminus Citizen Identification</h3>
+      </div>
+      <div class="id-card">
+        <div class="id-image" [ngStyle]="{'background-image': 'url(' + idImageUrl + ')'}"> </div>
+        <div class="id-info">
+          <div class="id-inf-left">
+            <h4 class="id-data text">Name: {{card.name}}</h4>
+            <h4 class="id-data text">Alias: {{card.username}}</h4>
+            <h4 class="id-data text">Race:{{card.race}}</h4>
+            <h4>Address
+              <h5 class="id-data text">{{card.address.streetB}}</h5>
+              <h5 class="id-data text">{{card.address.streetD}},{{card.address.streetA}} Terminus
+                {{card.address.zipcode}}</h5>
+              <h5 class="id-data text"></h5>
+            </h4>
+          </div>
+          <div class="id-info-right">
+            <h4 *ngIf="statsReady">Combat Classification:  {{card.stats.name}}</h4>
+            <h4>Credit Balance {{card.accountHistory[0].amount}}</h4>
+            <h4>Employer</h4>
+            <h4>{{card.company.name}}</h4>
+            <h5>{{card.company.catchPhrase}}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="button-row">      
+       <button class="glow short" (click)="this.getWussStats()">
+        Wuss Loadout<span aria-hidden>_</span>
+        <span aria-hidden class="cybr-btn__glitch glow">Get stats</span>
+        <span aria-hidden class="cybr-btn__tag glow">D_6</span>
+      </button>
+        <button class="glow short" (click)="this.getEasyStats()">
+          Easy Loadout<span aria-hidden>_</span>
+          <span aria-hidden class="cybr-btn__glitch glow">Get stats</span>
+          <span aria-hidden class="cybr-btn__tag glow">D_6</span>
+        </button>
+        <button class="glow short" (click)="this.getMediumStats()">
+          Medium Loadout<span aria-hidden>_</span>
+          <span aria-hidden class="cybr-btn__glitch glow">Get stats</span>
+          <span aria-hidden class="cybr-btn__tag glow">D_6</span>
+        </button>
+        <button class="glow short" (click)="this.getHardStats()">
+          Hard Loadout<span aria-hidden>_</span>
+          <span aria-hidden class="cybr-btn__glitch glow">Get stats</span>
+          <span aria-hidden class="cybr-btn__tag glow">D_6</span>
+        </button>
+      </div>
+      <div *ngIf="statsReady" >
+        <div class="big-stats">
+        <h3>HP:
+         {{card.stats.hit_points}}
+        </h3>
+        <h3>AP: coming soon</h3>
+        <h3>AC:{{card.stats.armor_class}}</h3>
+      </div>
+        <div class="monster-stats">
+        <div class="stats-block">
+         <div class="stat-row">
+            <h4 class="stat">AC: {{card.stats.armor_class}}</h4>
+            <h4 class="stat">STR: {{card.stats.strength}}</h4>
+            <h4 class="stat">DEX: {{card.stats.dexterity}}</h4>
+          </div>
+          <br>
+          <div class="stat-row">
+            <h4 class="stat">INT: {{card.stats.intelligence}}</h4>
+            <h4 class="stat">CON: {{card.stats.constitution}}</h4>
+            <h4 class="stat">WIS: {{card.stats.wisdom}}</h4>
+          </div>
+        </div>
+        <div class="attacks-block">
+          <div *ngFor="let action of card.stats.actions">
+            <h4>{{action.name}}: </h4>
+            <h5>{{action.desc}}</h5>
+            <h5>{{card.loadout}}</h5>
+          </div>
+
+        </div>
+        </div>
+      </div>
+    </div>
+    <div clasas="data-feed-short glow">
+      second feed
+    </div>
+  </div>

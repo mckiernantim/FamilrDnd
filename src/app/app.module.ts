@@ -20,8 +20,14 @@ import {RouterModule} from "@angular/router";
 import { CombsatComponent } from './combsat/combsat.component';
 import { CombatComponent } from './combat/combat.component'
 import { Ng2CompleterModule} from 'ng2-completer'
+import { LayoutModule } from '@angular/cdk/layout';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TerminusComponent } from './terminus/terminus.component';
+import { BlockComponent } from './block/block.component';
+import { GoodsComponent } from './goods/goods.component';
+import { NpcComponent } from './npc/npc.component';
+import { NewsComponent } from './news/news.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +40,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavbarComponent,
     CombsatComponent,
     CombatComponent,
+    TerminusComponent,
+    BlockComponent,
+    GoodsComponent,
+    NpcComponent,
+    NewsComponent,
 
     
 
@@ -53,6 +64,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     MatMenuModule,
     Ng2CompleterModule,
+    LayoutModule,
  
     
     
