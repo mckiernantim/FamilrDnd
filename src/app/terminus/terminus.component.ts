@@ -4,9 +4,11 @@ import { RollService } from "./../roll.service";
 import { LoadoutService } from "../loadout.service";
 import { Component, OnInit } from "@angular/core";
 import * as faker from "faker";
-const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*','content-type': 'application/json'} )
 
-debugger
+// const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*','content-type': 'application/json'} )
+
+
+
 @Component({
   selector: "app-terminus",
   templateUrl: "./terminus.component.html",
@@ -68,8 +70,9 @@ export class TerminusComponent implements OnInit {
   idImageUrl: string;
   dataReady: boolean;
   statsReady: boolean;
-  maleFaceUrl: string = "https://fakeface.rest/face/json?gender=male";
-  femaleFaceUrl: string = "https://fakeface.rest/face/json?gender=female";
+  maleFaceUrl: string = "https://cors-anywhere.herokuapp.com/http://fakeface.rest/face/json?gender=male";
+  femaleFaceUrl: string = "https://cors-anywhere.herokuapp.com/http://fakeface.rest/face/json?gender=female";
+  headers: HttpHeaders;
 
   constructor(
     private rolls: RollService,
@@ -79,9 +82,9 @@ export class TerminusComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-  
- 
-    console.log(headers)
+    this.headers = new HttpHeaders().set('access-control-allow-origin', "http://localhost:8080/")
+    this.http.get('http://fakeface.rest/face/json?gender=male').subscribe(data => console.log(data))
+    console.log(this.headers)
     let hood = "";
     let streetX;
     let streetY;
@@ -111,18 +114,28 @@ export class TerminusComponent implements OnInit {
 
     thing.address.streetA = this.hoods[this.rolls.roll20()];
     this.card = thing;
-   console.log(headers, " !!!!!!!!")
-    this.http.get(this.maleFaceUrl, {headers: headers}).subscribe((data) => {
-      let res: any = data;
+   console.log(this.headers, " !!!!!!!!")
+   
+    this.http.get('https://cors-anywhere.herokuapp.com/http://fakeface.rest/face/json?gender=male')
+      .subscribe(
+      (data) => {
+      let res:any = data;
+      console.log("were in the response")
       this.idImageUrl = res.image_url;
       console.log(this.idImageUrl);
       this.dataReady = true;
-    });
+    },
+    (error) => {
+      console.log(error)
+    }
+    );
+   
+  
   }
   getEasyStats() {
     let monster = this.easyMobs[this.rolls.roll6()];
     this.http
-      .get("http://dnd5eapi.co/api/monsters/" + monster)
+      .get("https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/monsters/" + monster)
       .subscribe((data) => {
         this.card.stats = data;
         console.log(monster);
@@ -132,7 +145,7 @@ export class TerminusComponent implements OnInit {
   getMediumStats() {
     let monster = this.mediumMobs[this.rolls.roll6()];
     this.http
-      .get("http://dnd5eapi.co/api/monsters/" + monster)
+      .get("https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/monsters/" + monster)
       .subscribe((data) => {
         this.card.stats = data;
         console.log(monster);
@@ -142,7 +155,7 @@ export class TerminusComponent implements OnInit {
   getHardStats() {
     let monster = this.hardMobs[this.rolls.roll6()];
     this.http
-      .get("http://dnd5eapi.co/api/monsters/" + monster)
+      .get("https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/monsters/" + monster)
       .subscribe((data) => {
         this.card.stats = data;
         console.log(monster);
@@ -152,7 +165,7 @@ export class TerminusComponent implements OnInit {
   getWussStats() {
     let monster = this.wussMobs[this.rolls.roll6()];
     this.http
-      .get("http://dnd5eapi.co/api/monsters/" + monster)
+      .get("https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/monsters/" + monster)
       .subscribe((data) => {
         this.card.stats = data;
         console.log(monster);
@@ -160,8 +173,11 @@ export class TerminusComponent implements OnInit {
       });
     let loadout = this.getLoadout();
     this.card.loadout = loadout;
+    console.log(this.card.loadout)
   }
   getLoadout() {
-    this.loadout.getLoadout();
+
+    return this.loadout.getLoadout();
+  
   }
 }

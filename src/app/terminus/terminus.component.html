@@ -105,7 +105,9 @@
           <div *ngFor="let action of card.stats.actions">
             <h4>{{action.name}}: </h4>
             <h5>{{action.desc}}</h5>
-            <h5>{{card.loadout}}</h5>
+            <div *ngFor = "let item of card.loadout | keyvalue">
+             <h5>{{item.key}} : {{item.value}}</h5> 
+            </div>
           </div>
 
         </div>
