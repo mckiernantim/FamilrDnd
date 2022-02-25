@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders,  } from "@angular/common/http";
 import { RollService } from "./../roll.service";
 import { LoadoutService } from "../loadout.service";
 import { Component, OnInit } from "@angular/core";
+import { take } from 'rxjs/operators'
+import { pipe } from 'rxjs'
 import * as faker from "faker";
 
 // const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*','content-type': 'application/json'} )
@@ -117,6 +119,7 @@ export class TerminusComponent implements OnInit {
    console.log(this.headers, " !!!!!!!!")
    
     this.http.get('https://cors-anywhere.herokuapp.com/http://fakeface.rest/face/json?gender=male')
+      .pipe(take(1))
       .subscribe(
       (data) => {
       let res:any = data;
@@ -136,6 +139,7 @@ export class TerminusComponent implements OnInit {
     let monster = this.easyMobs[this.rolls.roll6()];
     this.http
       .get("https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/monsters/" + monster)
+      .pipe(take(1))
       .subscribe((data) => {
         this.card.stats = data;
         console.log(monster);
@@ -146,6 +150,7 @@ export class TerminusComponent implements OnInit {
     let monster = this.mediumMobs[this.rolls.roll6()];
     this.http
       .get("https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/monsters/" + monster)
+      .pipe(take(1))
       .subscribe((data) => {
         this.card.stats = data;
         console.log(monster);
@@ -156,6 +161,7 @@ export class TerminusComponent implements OnInit {
     let monster = this.hardMobs[this.rolls.roll6()];
     this.http
       .get("https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/monsters/" + monster)
+      .pipe(take(1))
       .subscribe((data) => {
         this.card.stats = data;
         console.log(monster);
@@ -166,6 +172,7 @@ export class TerminusComponent implements OnInit {
     let monster = this.wussMobs[this.rolls.roll6()];
     this.http
       .get("https://cors-anywhere.herokuapp.com/http://dnd5eapi.co/api/monsters/" + monster)
+      .pipe(take(1))
       .subscribe((data) => {
         this.card.stats = data;
         console.log(monster);
